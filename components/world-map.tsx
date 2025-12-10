@@ -69,7 +69,6 @@ export default function WorldMap() {
     : "//unpkg.com/three-globe/example/img/earth-day.jpg"
 
   const atmosphereColor = isDark ? "#38bdf8" : "#0f172a"
-  const haloClass = isDark ? "bg-sky-500/15" : "bg-sky-400/25"
 
   const pointsData = Object.entries(countryDataMap)
     .filter(([_, d]) => d.traveled)
@@ -87,19 +86,15 @@ export default function WorldMap() {
   const traveledCount = pointsData.length
 
   return (
-    <div className="h-full">
-      <Card className="h-full border border-slate-200/70 bg-white/95 text-slate-900 shadow-lg dark:border-white/10 dark:bg-white/5 dark:text-white">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-lg font-semibold">Pays visités</CardTitle>
+    <>
+      <Card className="h-full min-h-[400px] sm:min-h-[500px] border-slate-200/70 bg-white/95 text-slate-900 shadow-lg dark:border-white/10 dark:bg-white/5 dark:text-white">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 sm:pb-4">
+          <CardTitle className="text-base sm:text-lg font-semibold">Pays visités</CardTitle>
           <span className="text-xs font-normal text-slate-500 dark:text-slate-300">{traveledCount} missions</span>
         </CardHeader>
 
-        <CardContent className="relative h-[280px] md:h-[360px] lg:h-[420px]">
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div className={`h-72 w-72 rounded-full blur-3xl md:h-80 md:w-80 ${haloClass}`} />
-          </div>
-
-          <div className="relative h-full w-full overflow-hidden rounded-2xl border border-black/5 dark:border-white/10">
+        <CardContent className="p-0 h-[calc(100%-4rem)]">
+          <div className="w-full h-full flex items-center justify-center">
             <Globe
               ref={(el: any) => {
                 globeRef.current = el
@@ -112,6 +107,8 @@ export default function WorldMap() {
                   el.pointOfView({ lat: 10, lng: 0, altitude: 2.2 }, 1000)
                 }
               }}
+              width={typeof window !== 'undefined' ? Math.min(window.innerWidth - 48, 1000) : 1000}
+              height={typeof window !== 'undefined' ? Math.min(window.innerHeight * 0.9, 800) : 800}
               globeImageUrl={globeTexture}
               bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
               backgroundColor="rgba(0,0,0,0)"
@@ -143,44 +140,44 @@ export default function WorldMap() {
       </Card>
 
       <Dialog open={!!selectedCountry} onOpenChange={(open) => !open && setSelectedCountry(null)}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-[95vw] sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl text-emerald-600 dark:text-emerald-400">
+            <DialogTitle className="text-xl sm:text-2xl text-emerald-600 dark:text-emerald-400">
               {selectedCountry?.name}
             </DialogTitle>
           </DialogHeader>
           {selectedCountry && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-emerald-100/80 p-4 dark:bg-emerald-500/10">
-                  <p className="mb-1 text-sm text-slate-600 dark:text-slate-300">Investissement</p>
-                  <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
-                    {selectedCountry.data.investment}M FCFA
+            <div className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="rounded-2xl bg-emerald-100/80 p-3 sm:p-4 dark:bg-emerald-500/10">
+                  <p className="mb-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">Investissement</p>
+                  <p className="text-lg sm:text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                    {selectedCountry.data.investment}M
                   </p>
                 </div>
-                <div className="rounded-2xl bg-emerald-100/80 p-4 dark:bg-emerald-500/10">
-                  <p className="mb-1 text-sm text-slate-600 dark:text-slate-300">Projets actifs</p>
-                  <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                <div className="rounded-2xl bg-emerald-100/80 p-3 sm:p-4 dark:bg-emerald-500/10">
+                  <p className="mb-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">Projets actifs</p>
+                  <p className="text-lg sm:text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                     {selectedCountry.data.projects}
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-emerald-100/80 p-4 dark:bg-emerald-500/10">
-                  <p className="mb-1 text-sm text-slate-600 dark:text-slate-300">Statut</p>
-                  <p className="text-lg font-semibold text-emerald-700 dark:text-emerald-400">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="rounded-2xl bg-emerald-100/80 p-3 sm:p-4 dark:bg-emerald-500/10">
+                  <p className="mb-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">Statut</p>
+                  <p className="text-sm sm:text-lg font-semibold text-emerald-700 dark:text-emerald-400">
                     {selectedCountry.data.status}
                   </p>
                 </div>
-                <div className="rounded-2xl bg-emerald-100/80 p-4 dark:bg-emerald-500/10">
-                  <p className="mb-1 text-sm text-slate-600 dark:text-slate-300">Année</p>
-                  <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">2025</p>
+                <div className="rounded-2xl bg-emerald-100/80 p-3 sm:p-4 dark:bg-emerald-500/10">
+                  <p className="mb-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">Année</p>
+                  <p className="text-lg sm:text-2xl font-bold text-emerald-700 dark:text-emerald-400">2025</p>
                 </div>
               </div>
             </div>
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   )
 }

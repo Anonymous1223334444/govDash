@@ -35,47 +35,49 @@ const events = [
 
 export function CalendrierTab() {
   return (
-    <div className="grid gap-6 lg:grid-cols-12">
-      <div className="space-y-6 lg:col-span-5">
-        <Card className="border-slate-200/70 bg-white/90 text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-slate-900 dark:text-white">
-              <CalendarDays className="h-5 w-5 text-indigo-300" /> Agenda prioritaire
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {events.map((event) => (
-              <div key={event.day} className="rounded-2xl border border-slate-200/70 bg-white/80 p-4 text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white">
-                <div className="flex items-center justify-between text-sm text-slate-600 dark:text-gray-400">
-                  <span className="font-semibold text-slate-900 dark:text-white">{event.day}</span>
-                  <span>{event.date}</span>
-                </div>
-                <div className="mt-3 space-y-3 text-sm text-slate-600 dark:text-gray-300">
-                  {event.sessions.map((session) => (
-                    <div
-                      key={session.label}
-                      className="flex flex-wrap items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-3 py-2 text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                    >
-                      <span className="font-semibold">{session.hour}</span>
-                      <span className="flex-1 text-slate-600 dark:text-gray-300">{session.label}</span>
-                      <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-gray-400">
+    <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
+      {/* Agenda - Prend toute la largeur sur mobile */}
+      <Card className="border-slate-200/70 bg-white/90 text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg text-slate-900 dark:text-white">
+            <CalendarDays className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-300" /> Agenda prioritaire
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 sm:space-y-4">
+          {events.map((event) => (
+            <div key={event.day} className="rounded-2xl border border-slate-200/70 bg-white/80 p-3 sm:p-4 text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white">
+              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 dark:text-gray-400 mb-2">
+                <span className="font-semibold text-slate-900 dark:text-white">{event.day}</span>
+                <span>{event.date}</span>
+              </div>
+              <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-slate-600 dark:text-gray-300">
+                {event.sessions.map((session) => (
+                  <div
+                    key={session.label}
+                    className="flex flex-col gap-2 rounded-2xl border border-slate-200/70 bg-white px-3 py-2 text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold whitespace-nowrap">{session.hour}</span>
+                      <span className="flex-1 text-slate-600 dark:text-gray-300 line-clamp-2">{session.label}</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-gray-400">
+                      <span className="flex items-center gap-1">
                         <MapPin className="h-3 w-3" /> {session.location}
                       </span>
-                      <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-gray-400">
+                      <span className="flex items-center gap-1">
                         <Users className="h-3 w-3" /> {session.team}
                       </span>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
 
-      <div className="lg:col-span-7">
-        <WorldMap />
-      </div>
+      {/* Map - Prend toute la largeur sur mobile */}
+      <WorldMap />
     </div>
   );
 }
