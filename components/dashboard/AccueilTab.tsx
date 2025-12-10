@@ -21,7 +21,7 @@ export function AccueilTab() {
       </div>
 
       <div className="space-y-6 lg:col-span-4">
-        <SignalVisuelWidget />
+        {/* <SignalVisuelWidget /> */}
         <ActivityWidget />
         <ProjectsWorkedWidget />
         <RemindersWidget />
