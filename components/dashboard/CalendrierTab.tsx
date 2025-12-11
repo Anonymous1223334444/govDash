@@ -11,7 +11,7 @@ const events = [
     day: 'Lundi',
     date: '17 février',
     sessions: [
-      { hour: '08:30', label: 'Brief stratégique – Présidence', location: 'Yaoundé', team: 'Cellule IA' },
+      { hour: '08:30', label: 'Brief stratégique - Présidence', location: 'Yaoundé', team: 'Cellule IA' },
       { hour: '14:00', label: 'Visite délégation Banque Africaine', location: 'Minfi', team: 'Relations ext.' },
     ],
   },
@@ -19,7 +19,7 @@ const events = [
     day: 'Mardi',
     date: '18 février',
     sessions: [
-      { hour: '10:00', label: 'Mission terrain – Bertoua', location: 'Est', team: 'Data Lab' },
+      { hour: '10:00', label: 'Mission terrain - Bertoua', location: 'Est', team: 'Data Lab' },
       { hour: '18:30', label: 'Débrief IA citoyenne', location: 'Virtuel', team: 'Task Force' },
     ],
   },

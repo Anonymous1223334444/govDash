@@ -18,7 +18,7 @@ const navItems: SidebarItem[] = [
   {
     id: 'accueil',
     label: 'Accueil',
-    description: 'Vue d’ensemble du chatbot',
+    description: 'Vue d\'ensemble du chatbot',
     icon: Home,
     accent: 'text-cyan-300',
     glow: 'from-cyan-500/30 via-cyan-500/5 to-transparent',
@@ -119,8 +119,8 @@ export const Sidebar = memo(function Sidebar({
           </div>
           {(!collapsed || !isDesktop) && (
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-gray-500">GovBot</p>
-              <p className="text-base font-semibold text-slate-900 dark:text-white">Centre stratégique</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-gray-500">Mega</p>
+              <p className="text-base font-semibold text-slate-900 dark:text-white">MCTN Managment</p>
             </div>
           )}
         </div>

@@ -107,8 +107,10 @@ export default function WorldMap() {
                   el.pointOfView({ lat: 10, lng: 0, altitude: 2.2 }, 1000)
                 }
               }}
-              width={typeof window !== 'undefined' ? Math.min(window.innerWidth - 48, 1000) : 1000}
-              height={typeof window !== 'undefined' ? Math.min(window.innerHeight * 0.9, 800) : 800}
+              // width={typeof window !== 'undefined' ? Math.min(window.innerWidth - 48, 1000) : 1000}
+              // height={typeof window !== 'undefined' ? Math.min(window.innerHeight * 0.9, 800) : 800}
+              width={typeof window !== 'undefined' ? Math.min(window.innerWidth - 48, 600) : 600}
+              height={typeof window !== 'undefined' ? Math.min(window.innerHeight * 0.5, 400) : 400}
               globeImageUrl={globeTexture}
               bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
               backgroundColor="rgba(0,0,0,0)"
